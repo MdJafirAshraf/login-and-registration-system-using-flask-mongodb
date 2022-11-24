@@ -10,8 +10,8 @@ It is a simple login and registration application. This application is developed
 Install pre-requisites packages
 
 ```
-pip install pymongo
 pip install Flask
+pip install pymongo
 ```
 
 ## How to run it
@@ -24,11 +24,11 @@ python app.py
 
 ## Output
 ### Login (Signin)
-<img src='https://github.com/JafirDon/login-and-registration-system-using-flask-mongodb/blob/main/static/images/output1.JPG' width="40%" ></img> <br><br>
+<img src='https://github.com/JafirDon/login-and-registration-system-using-flask-mongodb/blob/main/static/images/output1.JPG' width="50%" ></img> <br><br>
 ### Validation
-<img src='https://github.com/JafirDon/login-and-registration-system-using-flask-mongodb/blob/main/static/images/output2.JPG' width="40%" ></img> <br><br>
+<img src='https://github.com/JafirDon/login-and-registration-system-using-flask-mongodb/blob/main/static/images/output2.JPG' width="50%" ></img> <br><br>
 ### Registration (Signup)
-<img src='https://github.com/JafirDon/login-and-registration-system-using-flask-mongodb/blob/main/static/images/output3.JPG' width="40%" ></img> <br><br>
+<img src='https://github.com/JafirDon/login-and-registration-system-using-flask-mongodb/blob/main/static/images/output3.JPG' width="50%" ></img> <br><br>
 
 
 ## License
