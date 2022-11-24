@@ -23,11 +23,12 @@ python app.py
 ```
 
 ## Output
-### Skew image
-<img src='https://github.com/JafirDon/Skew-Correction-for-Text-Python/blob/main/images/img4.png' width="40%" ></img> <br><br>
-### Skew Corrected image
-<img src='https://github.com/JafirDon/Skew-Correction-for-Text-Python/blob/main/images/Rotated_image.jpg' width="40%" ></img>
-
+### Login (Signin)
+<img src='https://github.com/JafirDon/login-and-registration-system-using-flask-mongodb/blob/main/static/images/output1.JPG' width="40%" ></img> <br><br>
+### Validation
+<img src='https://github.com/JafirDon/login-and-registration-system-using-flask-mongodb/blob/main/static/images/output2.JPG' width="40%" ></img> <br><br>
+### Registration (Signup)
+<img src='https://github.com/JafirDon/login-and-registration-system-using-flask-mongodb/blob/main/static/images/output3.JPG' width="40%" ></img> <br><br>
 
 
 ## License
