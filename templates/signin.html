@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename= 'fonts/material-icon/css/material-design-iconic-font.min.css') }}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="main">
+        <!-- Sing in  Form -->
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><img src="{{ url_for('static', filename= 'images/signin-image.jpg') }}"
+                                alt="sing up image"></figure>
+                    </div>
+
+                    <div class="signin-form">
+                        <h2 class="form-title">Sign In</h2>
+                        <div style="margin-bottom:10px">
+                            <label class="label-agree-term error_message" style="color: red;display: none;"></label>
+                        </div>
+                        <form action="/signin" method="POST" class="register-form" id="login-form">
+                            <div class="form-group">
+                                <label for="your_email"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="email" id="email" placeholder="Email" />
+                            </div>
+                            <div class="form-group">
+                                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="pass" id="pass" placeholder="Password" />
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                                <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember
+                                    me</label>
+                            </div>
+                            <div class="form-button">
+                                <input type="button" name="signin" id="signin" class="form-submit" onclick="login();" value="Log in" />
+                            </div>
+                            <div style="margin-top:5px;">
+                                <label class="label-agree-term" id="login_message" style="color: green;display: none;"></label>
+                            </div>
+                        </form>
+                        <div class="social-login">
+                            <a href="/signup" class="signup-image-link">Create an account</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- JS -->
+    <script src="{{ url_for('static', filename= 'vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename= 'js/main.js') }}"></script>
+
+    <script type="text/javascript">
+        
+        function login(){
+
+            if (($("#email").val() == "") || ($("#pass").val() == '')){
+
+                $(".error_message").text("All fields are required.");
+                $(".error_message").show(0).delay(3000).hide(0);
+            }
+            else {
+                var data = new FormData();
+                data.append('email', $("#email").val());
+                data.append('pass', $("#pass").val());
+                $.ajax({
+                    type: 'POST',
+                    enctype: 'multipart/form-data',
+                    url: '/signin',
+                    processData: false,
+                    cache: false,
+                    timeout: 800000,
+                    contentType: false,
+                    data: data,
+                    success: function(response) {
+                        var data = JSON.parse(response);
+                        if (data['status'] == true){
+                            $('#login_message').text("Welcome " + data['username'] +", Login Successfully.");
+                            $('#login_message').show(0).delay(3000).hide(0);
+                        } else{
+                            $(".error_message").text("Incorrect Email and Password.");
+                            $(".error_message").show(0).delay(3000).hide(0);
+                        }
+                    } 
+                });
+            }
+        }
+
+    </script>
+</body>
+
+</html>

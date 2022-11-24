@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename= 'fonts/material-icon/css/material-design-iconic-font.min.css') }}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="main">
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Sign up</h2>
+                        <div style="margin-bottom:10px">
+                            <label class="label-agree-term" id="error_message" style="color: red;display: none;"></label>
+                        </div>
+                        <form method="POST" class="register-form" id="register-form">
+                            <div class="form-group">
+                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="name" id="name" placeholder="Your Name" />
+                            </div>
+                            <div class="form-group">
+                                <label for="email"><i class="zmdi zmdi-email"></i></label>
+                                <input type="email" name="email" id="email" placeholder="Your Email" />
+                            </div>
+                            <div class="form-group">
+                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="pass" id="pass" placeholder="Password" />
+                            </div>
+                            <div class="form-group">
+                                <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                                <input type="password" name="repass" id="repass" placeholder="Repeat your password" />
+                            </div>
+                            <div class="form-group">
+                                <label for="agree-term" class="label-agree-term">
+                                    <a href="/" class="signup-image-link">I am already member</a>
+                                </label>
+                            </div>
+                            <div class="form-button">
+                                <input type="button" name="signup" id="signup" class="form-submit" onclick="register();" value="Register" />
+                            </div>
+                            <div style="margin-top:5px;">
+                                <label class="label-agree-term" id="signup_message" style="color: green;display: none;">Registeration Successfully</label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="{{ url_for('static', filename= 'images/signup-image.jpg') }}"
+                                alt="sing up image"></figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- JS -->
+    <script src="{{ url_for('static', filename= 'vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename= 'js/main.js') }}"></script>
+
+    <script type="text/javascript">
+
+        function register(){
+
+            if (($("#name").val() == '') || ($("#email").val() == "")||
+                ($("#pass").val() == '') || ($("#repass").val() == "")){
+
+                $("#error_message").text("All fields are required");
+                $("#error_message").show(0).delay(3000).hide(0);
+            } 
+            else if ($("#pass").val() != $("#repass").val()){
+                $("#error_message").text("Passwords are not same");
+                $("#error_message").show(0).delay(3000).hide(0);
+            }
+
+            else {
+                var data = new FormData();
+                data.append('name', $("#name").val());
+                data.append('email', $("#email").val());
+                data.append('pass', $("#pass").val());
+
+                $.ajax({
+                    type: 'POST',
+                    enctype: 'multipart/form-data',
+                    url: '/register',
+                    processData: false,
+                    cache: false,
+                    timeout: 800000,
+                    contentType: false,
+                    data: data,
+                    success: function(response) {
+                        var data = JSON.parse(response);
+                        if (data == true){
+                            $('#signup_message').show(0).delay(3000).hide(0);
+
+                            setTimeout(function() {
+                                window.location = "/";
+                            }, 3000);
+
+                        } else{                           
+                            $("#error_message").text("Email Id was already exists.");
+                            $("#error_message").show(0).delay(3000).hide(0);
+                        }
+                    }
+                });
+            }
+        }
+
+    </script>
+</body>
+
+</html>
