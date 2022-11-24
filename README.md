@@ -1,2 +1,5 @@
 # login-and-registration-system-using-mongodb
-This is Login and Registration system using HTML, CSS, JS and MongoDB
+
+## Intrduction
+
+It is a simple login and registration application. This application is developed in HTML, CSS, JS, Python Flask and MongoDB. The project aims to understand how MongoDB works in real-time applications.
